@@ -11,7 +11,9 @@ const port = process.env.PORT || 8080;
 MongodbConnection.connect(process.env.DATABASE_URL as string);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Bima Vault API is running successfully");
+  res
+    .status(200)
+    .json({ success: true, message: "Bima Vault API is running successfully" });
 });
 
 app.listen(port, () => {

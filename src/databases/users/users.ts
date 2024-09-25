@@ -1,18 +1,5 @@
 import { Schema, model } from "mongoose";
-
-type Roles = "Superadmin" | "claims manager" | "claims office" | "normal user";
-
-interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  verified: boolean;
-  active: boolean;
-  roles: Roles[];
-  avatar?: string;
-  createdAt?: Date;
-  deletedAt?: Date;
-}
+import { IUser } from "../../interfaces/users";
 
 const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
