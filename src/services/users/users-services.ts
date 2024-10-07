@@ -1,12 +1,12 @@
 import oracledb from "oracledb";
-import { Request, Response } from "express";
+import { Response } from "express";
 import pool from "../../config/database-config";
 import jwt from "jsonwebtoken";
 import { IUser } from "../../interfaces/users";
 export class UserService {
   constructor() {}
 
-  async loginUser(req: IUser, res: Response) {
+  static async loginUser(req: IUser, res: Response) {
     let connection;
     let result: any;
 

@@ -1,15 +1,17 @@
+import { config } from "dotenv";
 import mongoose from "mongoose";
 import oracledb from "oracledb";
-export class MongodbConnection {
-  static async connect(dbUrl: string) {
-    try {
-      await mongoose.connect(dbUrl);
-      console.info("connected to the database");
-    } catch (error) {
-      console.error("error connecting to the mongoose database", error);
-    }
-  }
-}
+config();
+// export class MongodbConnection {
+//   static async connect(dbUrl: string) {
+//     try {
+//       await mongoose.connect(dbUrl);
+//       console.info("connected to the database");
+//     } catch (error) {
+//       console.error("error connecting to the mongoose database", error);
+//     }
+//   }
+// }
 
 function getDbkeys() {
   let user;
