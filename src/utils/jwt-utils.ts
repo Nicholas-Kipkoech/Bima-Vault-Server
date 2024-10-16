@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
-import { IUser } from "../interfaces/users";
+import { IUser } from "../interfaces";
 
 config();
 

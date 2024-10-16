@@ -2,7 +2,9 @@ import oracledb from "oracledb";
 import { Response } from "express";
 import pool from "../../config/database-config";
 import jwt from "jsonwebtoken";
-import { IUser } from "../../interfaces/users";
+import { IUser } from "../../interfaces";
+import Logger from "../../schema/Logger";
+import { LoggerService } from "../logger/logger.services";
 export class UserService {
   constructor() {}
 
@@ -144,6 +146,7 @@ END;`,
           bgColor: (await result).outBinds.v_bg_color,
         };
 
+        LoggerService.createLog("sucess", "User logged in successfully!", user);
         return res.status(200).json({
           success: true,
           message: "User logged in successfully!",

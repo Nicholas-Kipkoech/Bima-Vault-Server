@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { IUser } from "../../interfaces/users";
+import { IUser } from "../../interfaces";
 import { config } from "dotenv";
 
 config();
