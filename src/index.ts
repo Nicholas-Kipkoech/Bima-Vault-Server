@@ -1,6 +1,4 @@
 import express, { Request, Response } from "express";
-// import { MongodbConnection } from "./config/database-config";
-
 import { config } from "dotenv";
 import userRouter from "./routes/user-routes";
 import { MongodbConnection } from "./config/database-config";

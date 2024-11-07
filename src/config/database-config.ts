@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import oracledb from "oracledb";
 config();
+
 export class MongodbConnection {
   static async connect(dbUrl: string) {
     try {
@@ -13,19 +14,38 @@ export class MongodbConnection {
   }
 }
 
+//getting database connections credentials
+
 function getDbkeys() {
   let user;
   let password;
   let connString;
 
-  if (process.env.ENVIROMENT === "MAYFAIR_TEST") {
-    user = process.env.MAYFAIR_DATABASE_USER;
-    password = process.env.MAYFAIR_DATABASE_PASSWORD;
-    connString = process.env.MAYFAIR_DATABASE_CONN_STRING;
-  } else if (process.env.ENVIROMENT === "INTRA") {
-    user = process.env.INTRA_DATABASE_USER;
-    password = process.env.INTRA_DATABASE_PASSWORD;
-    connString = process.env.INTRA_DATABASE_CONN_STRING;
+  const {
+    ENVIROMENT,
+    MAYFAIR_DATABASE_USER,
+    MAYFAIR_DATABASE_PASSWORD,
+    MAYFAIR_DATABASE_CONN_STRING,
+    INTRA_DATABASE_USER,
+    INTRA_DATABASE_PASSWORD,
+    INTRA_DATABASE_CONN_STRING,
+    LOCAL_DATABASE_USER,
+    LOCAL_DATABASE_PASSWORD,
+    LOCAL_DATABASE_CONN_STRING,
+  } = process.env;
+
+  if (ENVIROMENT === "MAYFAIR_TEST") {
+    user = MAYFAIR_DATABASE_USER;
+    password = MAYFAIR_DATABASE_PASSWORD;
+    connString = MAYFAIR_DATABASE_CONN_STRING;
+  } else if (ENVIROMENT === "INTRA") {
+    user = INTRA_DATABASE_USER;
+    password = INTRA_DATABASE_PASSWORD;
+    connString = INTRA_DATABASE_CONN_STRING;
+  } else if (ENVIROMENT === "LOCAL") {
+    user = LOCAL_DATABASE_USER;
+    password = LOCAL_DATABASE_PASSWORD;
+    connString = LOCAL_DATABASE_CONN_STRING;
   }
   return { user, password, connString };
 }
